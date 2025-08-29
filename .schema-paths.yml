@@ -1,0 +1,90 @@
+app_group:
+  - read:
+      path: /apps/siteinfo.eda.nokia.com
+      method: GET
+
+patch:
+  - update:
+      path: /apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/banners/{name}
+      method: PATCH
+
+resource_history:
+  - read:
+      path: /apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/banners/{name}/_revs
+      method: GET
+
+resource_list:
+  - read:
+      path: /apps/siteinfo.eda.nokia.com/v1alpha1
+      method: GET
+
+resource_topology:
+  - read:
+      path: /apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/banners/{name}/_topology
+      method: GET
+
+status:
+  - delete:
+      path: /apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/banners/{name}
+      method: DELETE
+
+ui_result:
+  - read:
+      path: /apps/siteinfo.eda.nokia.com/v1alpha1/_ui/{pathname}
+      method: GET
+
+com.nokia.eda.siteinfo.v1alpha1.banner:
+  - create:
+      path: /apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/banners
+      method: POST
+  - read:
+      path: /apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/banners/{name}
+      method: GET
+  - update:
+      path: /apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/banners/{name}
+      method: PUT
+
+com.nokia.eda.siteinfo.v1alpha1.banner_list:
+  - read:
+      path: /apps/siteinfo.eda.nokia.com/v1alpha1/banners
+      method: GET
+  - read:
+      path: /apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/banners
+      method: GET
+  - delete:
+      path: /apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/banners
+      method: DELETE
+
+com.nokia.eda.siteinfo.v1alpha1.banner_deleted_resources:
+  - read:
+      path: /apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/banners/_deleted
+      method: GET
+
+totalPaths: 9
+totalSchemas: 33
+usedSchemas: 10
+unusedSchemas: 23
+unusedSchemaList:
+  - AppGroupVersion
+  - ErrorIndex
+  - ErrorItem
+  - ErrorResponse
+  - K8SPatchOp
+  - OverlayState
+  - Resource
+  - ResourceHistoryEntry
+  - StatusDetails
+  - TopoAttrMetadata
+  - TopoElemMetadata
+  - TopoLinkEndpoint
+  - TopoNodeGrouping
+  - TopoOverlayEndpoint
+  - TopoOverlayEndpointState
+  - TopoOverlayLink
+  - TopoOverlayLinkState
+  - TopoOverlayNode
+  - TopoOverlayNodeState
+  - TopoSchema
+  - Topology
+  - com.nokia.eda.siteinfo.v1alpha1.Banner_DeletedResourceEntry
+  - com.nokia.eda.siteinfo.v1alpha1.Banner_metadata

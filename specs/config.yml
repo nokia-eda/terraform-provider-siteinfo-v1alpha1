@@ -1,0 +1,38 @@
+provider:
+  name: siteinfo
+
+data_sources:
+  app_group:
+    read:
+      path: /apps/siteinfo.eda.nokia.com
+      method: GET
+
+  banner:
+    read:
+      path: /apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/banners/{name}
+      method: GET
+
+  banner_list:
+    read:
+      path: /apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/banners
+      method: GET
+
+  resource_list:
+    read:
+      path: /apps/siteinfo.eda.nokia.com/v1alpha1
+      method: GET
+
+resources:
+  banner:
+    create:
+      path: /apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/banners
+      method: POST
+    read:
+      path: /apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/banners/{name}
+      method: GET
+    update:
+      path: /apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/banners/{name}
+      method: PUT
+    delete:
+      path: /apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/banners/{name}
+      method: DELETE

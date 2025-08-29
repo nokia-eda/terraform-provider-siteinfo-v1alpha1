@@ -1,0 +1,15 @@
+Path,Method,Schema,Model Name,Supported,Datasource,Resource
+/apps/siteinfo.eda.nokia.com,GET,AppGroup,app_group,true,true,false
+/apps/siteinfo.eda.nokia.com/v1alpha1,GET,ResourceList,resource_list,true,true,false
+/apps/siteinfo.eda.nokia.com/v1alpha1/_ui/{pathname},GET,UIResult,,false,false,false
+/apps/siteinfo.eda.nokia.com/v1alpha1/banners,GET,com.nokia.eda.siteinfo.v1alpha1.BannerList,,false,false,false
+/apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/banners,DELETE,com.nokia.eda.siteinfo.v1alpha1.BannerList,,false,false,false
+/apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/banners,GET,com.nokia.eda.siteinfo.v1alpha1.BannerList,banner_list,true,true,false
+/apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/banners,POST,com.nokia.eda.siteinfo.v1alpha1.Banner,banner,true,false,true
+/apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/banners/_deleted,GET,com.nokia.eda.siteinfo.v1alpha1.Banner_DeletedResources,,false,false,false
+/apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/banners/{name},DELETE,Status,banner,true,false,true
+/apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/banners/{name},GET,com.nokia.eda.siteinfo.v1alpha1.Banner,banner,true,true,true
+/apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/banners/{name},PATCH,Patch,,false,false,false
+/apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/banners/{name},PUT,com.nokia.eda.siteinfo.v1alpha1.Banner,banner,true,false,true
+/apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/banners/{name}/_revs,GET,ResourceHistory,,false,false,false
+/apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/banners/{name}/_topology,GET,ResourceTopology,,false,false,false
