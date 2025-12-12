@@ -17,9 +17,29 @@ data_sources:
       path: /apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/banners
       method: GET
 
+  default_mtu:
+    read:
+      path: /apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/defaultmtus/{name}
+      method: GET
+
+  default_mtu_list:
+    read:
+      path: /apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/defaultmtus
+      method: GET
+
   resource_list:
     read:
       path: /apps/siteinfo.eda.nokia.com/v1alpha1
+      method: GET
+
+  system_load_balancer:
+    read:
+      path: /apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/systemloadbalancers/{name}
+      method: GET
+
+  system_load_balancer_list:
+    read:
+      path: /apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/systemloadbalancers
       method: GET
 
 resources:
@@ -35,4 +55,32 @@ resources:
       method: PUT
     delete:
       path: /apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/banners/{name}
+      method: DELETE
+
+  default_mtu:
+    create:
+      path: /apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/defaultmtus
+      method: POST
+    read:
+      path: /apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/defaultmtus/{name}
+      method: GET
+    update:
+      path: /apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/defaultmtus/{name}
+      method: PUT
+    delete:
+      path: /apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/defaultmtus/{name}
+      method: DELETE
+
+  system_load_balancer:
+    create:
+      path: /apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/systemloadbalancers
+      method: POST
+    read:
+      path: /apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/systemloadbalancers/{name}
+      method: GET
+    update:
+      path: /apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/systemloadbalancers/{name}
+      method: PUT
+    delete:
+      path: /apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/systemloadbalancers/{name}
       method: DELETE

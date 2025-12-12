@@ -11,41 +11,41 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 	"github.com/nokia/eda/apps/terraform-provider-siteinfo/internal/eda/apiclient"
-	"github.com/nokia/eda/apps/terraform-provider-siteinfo/internal/resource_banner"
+	"github.com/nokia/eda/apps/terraform-provider-siteinfo/internal/resource_default_mtu"
 	"github.com/nokia/eda/apps/terraform-provider-siteinfo/internal/tfutils"
 )
 
 const (
-	create_rs_banner = "/apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/banners"
-	read_rs_banner   = "/apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/banners/{name}"
-	update_rs_banner = "/apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/banners/{name}"
-	delete_rs_banner = "/apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/banners/{name}"
+	create_rs_defaultMtu = "/apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/defaultmtus"
+	read_rs_defaultMtu   = "/apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/defaultmtus/{name}"
+	update_rs_defaultMtu = "/apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/defaultmtus/{name}"
+	delete_rs_defaultMtu = "/apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/defaultmtus/{name}"
 )
 
 var (
-	_ resource.Resource                = (*bannerResource)(nil)
-	_ resource.ResourceWithConfigure   = (*bannerResource)(nil)
-	_ resource.ResourceWithImportState = (*bannerResource)(nil)
+	_ resource.Resource                = (*defaultMtuResource)(nil)
+	_ resource.ResourceWithConfigure   = (*defaultMtuResource)(nil)
+	_ resource.ResourceWithImportState = (*defaultMtuResource)(nil)
 )
 
-func NewBannerResource() resource.Resource {
-	return &bannerResource{}
+func NewDefaultMtuResource() resource.Resource {
+	return &defaultMtuResource{}
 }
 
-type bannerResource struct {
+type defaultMtuResource struct {
 	client *apiclient.EdaApiClient
 }
 
-func (r *bannerResource) Metadata(ctx context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
-	resp.TypeName = req.ProviderTypeName + "_banner"
+func (r *defaultMtuResource) Metadata(ctx context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
+	resp.TypeName = req.ProviderTypeName + "_default_mtu"
 }
 
-func (r *bannerResource) Schema(ctx context.Context, req resource.SchemaRequest, resp *resource.SchemaResponse) {
-	resp.Schema = resource_banner.BannerResourceSchema(ctx)
+func (r *defaultMtuResource) Schema(ctx context.Context, req resource.SchemaRequest, resp *resource.SchemaResponse) {
+	resp.Schema = resource_default_mtu.DefaultMtuResourceSchema(ctx)
 }
 
-func (r *bannerResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
-	var data resource_banner.BannerModel
+func (r *defaultMtuResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
+	var data resource_default_mtu.DefaultMtuModel
 
 	// Read Terraform plan data into the model
 	resp.Diagnostics.Append(req.Plan.Get(ctx, &data)...)
@@ -70,19 +70,19 @@ func (r *bannerResource) Create(ctx context.Context, req resource.CreateRequest,
 
 	// Create API call logic
 	tflog.Info(ctx, "Create()::API request", map[string]any{
-		"path": create_rs_banner,
+		"path": create_rs_defaultMtu,
 		"body": spew.Sdump(reqBody),
 	})
 
 	t0 := time.Now()
 	result := map[string]any{}
 
-	err = r.client.Create(ctx, create_rs_banner, map[string]string{
+	err = r.client.Create(ctx, create_rs_defaultMtu, map[string]string{
 		"namespace": tfutils.StringValue(data.Metadata.Namespace),
 	}, reqBody, &result)
 
 	tflog.Info(ctx, "Create()::API returned", map[string]any{
-		"path":      create_rs_banner,
+		"path":      create_rs_defaultMtu,
 		"result":    spew.Sdump(result),
 		"timeTaken": time.Since(t0).String(),
 	})
@@ -95,13 +95,13 @@ func (r *bannerResource) Create(ctx context.Context, req resource.CreateRequest,
 	// Read the resource again to populate any values not available in the response from Create()
 	t0 = time.Now()
 
-	err = r.client.Get(ctx, read_rs_banner, map[string]string{
+	err = r.client.Get(ctx, read_rs_defaultMtu, map[string]string{
 		"namespace": tfutils.StringValue(data.Metadata.Namespace),
 		"name":      tfutils.StringValue(data.Metadata.Name),
 	}, &result)
 
 	tflog.Info(ctx, "Read()::API returned", map[string]any{
-		"path":      read_rs_banner,
+		"path":      read_rs_defaultMtu,
 		"result":    spew.Sdump(result),
 		"timeTaken": time.Since(t0).String(),
 	})
@@ -121,8 +121,8 @@ func (r *bannerResource) Create(ctx context.Context, req resource.CreateRequest,
 	resp.Diagnostics.Append(resp.State.Set(ctx, data)...)
 }
 
-func (r *bannerResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
-	var data resource_banner.BannerModel
+func (r *defaultMtuResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
+	var data resource_default_mtu.DefaultMtuModel
 
 	// Read Terraform prior state data into the model
 	resp.Diagnostics.Append(req.State.Get(ctx, &data)...)
@@ -133,20 +133,20 @@ func (r *bannerResource) Read(ctx context.Context, req resource.ReadRequest, res
 
 	// Read API call logic
 	tflog.Info(ctx, "Read()::API request", map[string]any{
-		"path": read_rs_banner,
+		"path": read_rs_defaultMtu,
 		"data": spew.Sdump(data),
 	})
 
 	t0 := time.Now()
 	result := map[string]any{}
 
-	err := r.client.Get(ctx, read_rs_banner, map[string]string{
+	err := r.client.Get(ctx, read_rs_defaultMtu, map[string]string{
 		"namespace": tfutils.StringValue(data.Metadata.Namespace),
 		"name":      tfutils.StringValue(data.Metadata.Name),
 	}, &result)
 
 	tflog.Info(ctx, "Read()::API returned", map[string]any{
-		"path":      read_rs_banner,
+		"path":      read_rs_defaultMtu,
 		"result":    spew.Sdump(result),
 		"timeTaken": time.Since(t0).String(),
 	})
@@ -167,8 +167,8 @@ func (r *bannerResource) Read(ctx context.Context, req resource.ReadRequest, res
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
 }
 
-func (r *bannerResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
-	var data resource_banner.BannerModel
+func (r *defaultMtuResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
+	var data resource_default_mtu.DefaultMtuModel
 
 	// Read Terraform plan data into the model
 	resp.Diagnostics.Append(req.Plan.Get(ctx, &data)...)
@@ -191,20 +191,20 @@ func (r *bannerResource) Update(ctx context.Context, req resource.UpdateRequest,
 
 	// Update API call logic
 	tflog.Info(ctx, "Update()::API request", map[string]any{
-		"path": update_rs_banner,
+		"path": update_rs_defaultMtu,
 		"body": spew.Sdump(reqBody),
 	})
 
 	t0 := time.Now()
 	result := map[string]any{}
 
-	err = r.client.Update(ctx, update_rs_banner, map[string]string{
+	err = r.client.Update(ctx, update_rs_defaultMtu, map[string]string{
 		"namespace": tfutils.StringValue(data.Metadata.Namespace),
 		"name":      tfutils.StringValue(data.Metadata.Name),
 	}, reqBody, &result)
 
 	tflog.Info(ctx, "Update()::API returned", map[string]any{
-		"path":      update_rs_banner,
+		"path":      update_rs_defaultMtu,
 		"result":    spew.Sdump(result),
 		"timeTaken": time.Since(t0).String(),
 	})
@@ -217,13 +217,13 @@ func (r *bannerResource) Update(ctx context.Context, req resource.UpdateRequest,
 	// Read the resource again to populate any values not available in the response from Update()
 	t0 = time.Now()
 
-	err = r.client.Get(ctx, read_rs_banner, map[string]string{
+	err = r.client.Get(ctx, read_rs_defaultMtu, map[string]string{
 		"namespace": tfutils.StringValue(data.Metadata.Namespace),
 		"name":      tfutils.StringValue(data.Metadata.Name),
 	}, &result)
 
 	tflog.Info(ctx, "Read()::API returned", map[string]any{
-		"path":      read_rs_banner,
+		"path":      read_rs_defaultMtu,
 		"result":    spew.Sdump(result),
 		"timeTaken": time.Since(t0).String(),
 	})
@@ -244,8 +244,8 @@ func (r *bannerResource) Update(ctx context.Context, req resource.UpdateRequest,
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
 }
 
-func (r *bannerResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
-	var data resource_banner.BannerModel
+func (r *defaultMtuResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
+	var data resource_default_mtu.DefaultMtuModel
 
 	// Read Terraform prior state data into the model
 	resp.Diagnostics.Append(req.State.Get(ctx, &data)...)
@@ -256,20 +256,20 @@ func (r *bannerResource) Delete(ctx context.Context, req resource.DeleteRequest,
 
 	// Delete API call logic
 	tflog.Info(ctx, "Delete()::API request", map[string]any{
-		"path": delete_rs_banner,
+		"path": delete_rs_defaultMtu,
 		"data": spew.Sdump(data),
 	})
 
 	t0 := time.Now()
 	result := map[string]any{}
 
-	err := r.client.Delete(ctx, delete_rs_banner, map[string]string{
+	err := r.client.Delete(ctx, delete_rs_defaultMtu, map[string]string{
 		"namespace": tfutils.StringValue(data.Metadata.Namespace),
 		"name":      tfutils.StringValue(data.Metadata.Name),
 	}, &result)
 
 	tflog.Info(ctx, "Delete()::API returned", map[string]any{
-		"path":      delete_rs_banner,
+		"path":      delete_rs_defaultMtu,
 		"result":    spew.Sdump(result),
 		"timeTaken": time.Since(t0).String(),
 	})
@@ -281,7 +281,7 @@ func (r *bannerResource) Delete(ctx context.Context, req resource.DeleteRequest,
 }
 
 // Configure adds the provider configured client to the resource.
-func (r *bannerResource) Configure(_ context.Context, req resource.ConfigureRequest, resp *resource.ConfigureResponse) {
+func (r *defaultMtuResource) Configure(_ context.Context, req resource.ConfigureRequest, resp *resource.ConfigureResponse) {
 	// Add a nil check when handling ProviderData because Terraform
 	// sets that data after it calls the ConfigureProvider RPC.
 	if req.ProviderData == nil {
@@ -301,7 +301,7 @@ func (r *bannerResource) Configure(_ context.Context, req resource.ConfigureRequ
 }
 
 // ImportState implements resource.ResourceWithImportState.
-func (r *bannerResource) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
+func (r *defaultMtuResource) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
 	parts := strings.Split(req.ID, "/")
 	if len(parts) < 2 {
 		resp.Diagnostics.AddError("Invalid ID", fmt.Sprintf("Expected format: id = <namespace/name>, got: id = %s", req.ID))
