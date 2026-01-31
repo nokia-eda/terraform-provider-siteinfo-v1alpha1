@@ -10,7 +10,7 @@ Path,Method,Schema,Model Name,Supported,Datasource,Resource
 /apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/banners/_deleted,GET,com.nokia.eda.siteinfo.v1alpha1.Banner_DeletedResources,,false,false,false
 /apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/banners/{name},DELETE,Status,banner,true,false,true
 /apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/banners/{name},GET,com.nokia.eda.siteinfo.v1alpha1.Banner,banner,true,true,true
-/apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/banners/{name},PATCH,Patch,,false,false,false
+/apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/banners/{name},PATCH,com.nokia.eda.siteinfo.v1alpha1.Banner,,false,false,false
 /apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/banners/{name},PUT,com.nokia.eda.siteinfo.v1alpha1.Banner,banner,true,false,true
 /apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/banners/{name}/_revs,GET,ResourceHistory,,false,false,false
 /apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/banners/{name}/_targets,GET,IntentTargets,,false,false,false
@@ -22,7 +22,7 @@ Path,Method,Schema,Model Name,Supported,Datasource,Resource
 /apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/defaultmtus/_deleted,GET,com.nokia.eda.siteinfo.v1alpha1.DefaultMTU_DeletedResources,,false,false,false
 /apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/defaultmtus/{name},DELETE,Status,default_mtu,true,false,true
 /apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/defaultmtus/{name},GET,com.nokia.eda.siteinfo.v1alpha1.DefaultMTU,default_mtu,true,true,true
-/apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/defaultmtus/{name},PATCH,Patch,,false,false,false
+/apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/defaultmtus/{name},PATCH,com.nokia.eda.siteinfo.v1alpha1.DefaultMTU,,false,false,false
 /apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/defaultmtus/{name},PUT,com.nokia.eda.siteinfo.v1alpha1.DefaultMTU,default_mtu,true,false,true
 /apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/defaultmtus/{name}/_revs,GET,ResourceHistory,,false,false,false
 /apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/defaultmtus/{name}/_targets,GET,IntentTargets,,false,false,false
@@ -34,7 +34,7 @@ Path,Method,Schema,Model Name,Supported,Datasource,Resource
 /apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/systemloadbalancers/_deleted,GET,com.nokia.eda.siteinfo.v1alpha1.SystemLoadBalancer_DeletedResources,,false,false,false
 /apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/systemloadbalancers/{name},DELETE,Status,system_load_balancer,true,false,true
 /apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/systemloadbalancers/{name},GET,com.nokia.eda.siteinfo.v1alpha1.SystemLoadBalancer,system_load_balancer,true,true,true
-/apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/systemloadbalancers/{name},PATCH,Patch,,false,false,false
+/apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/systemloadbalancers/{name},PATCH,com.nokia.eda.siteinfo.v1alpha1.SystemLoadBalancer,,false,false,false
 /apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/systemloadbalancers/{name},PUT,com.nokia.eda.siteinfo.v1alpha1.SystemLoadBalancer,system_load_balancer,true,false,true
 /apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/systemloadbalancers/{name}/_revs,GET,ResourceHistory,,false,false,false
 /apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/systemloadbalancers/{name}/_targets,GET,IntentTargets,,false,false,false

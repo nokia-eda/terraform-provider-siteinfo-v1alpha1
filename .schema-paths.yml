@@ -25,17 +25,6 @@ k8_s_topology_request:
       path: /apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/systemloadbalancers/{name}/_topology
       method: POST
 
-patch:
-  - update:
-      path: /apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/banners/{name}
-      method: PATCH
-  - update:
-      path: /apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/defaultmtus/{name}
-      method: PATCH
-  - update:
-      path: /apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/systemloadbalancers/{name}
-      method: PATCH
-
 resource_history:
   - read:
       path: /apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/banners/{name}/_revs
@@ -89,6 +78,9 @@ com.nokia.eda.siteinfo.v1alpha1.banner:
   - update:
       path: /apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/banners/{name}
       method: PUT
+  - update:
+      path: /apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/banners/{name}
+      method: PATCH
 
 com.nokia.eda.siteinfo.v1alpha1.banner_list:
   - read:
@@ -116,6 +108,9 @@ com.nokia.eda.siteinfo.v1alpha1.default_mtu:
   - update:
       path: /apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/defaultmtus/{name}
       method: PUT
+  - update:
+      path: /apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/defaultmtus/{name}
+      method: PATCH
 
 com.nokia.eda.siteinfo.v1alpha1.default_mtu_list:
   - read:
@@ -143,6 +138,9 @@ com.nokia.eda.siteinfo.v1alpha1.system_load_balancer:
   - update:
       path: /apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/systemloadbalancers/{name}
       method: PUT
+  - update:
+      path: /apps/siteinfo.eda.nokia.com/v1alpha1/namespaces/{namespace}/systemloadbalancers/{name}
+      method: PATCH
 
 com.nokia.eda.siteinfo.v1alpha1.system_load_balancer_list:
   - read:
@@ -162,8 +160,8 @@ com.nokia.eda.siteinfo.v1alpha1.system_load_balancer_deleted_resources:
 
 totalPaths: 24
 totalSchemas: 68
-usedSchemas: 18
-unusedSchemas: 50
+usedSchemas: 17
+unusedSchemas: 51
 unusedSchemaList:
   - AppGroupVersion
   - ErrorIndex
@@ -172,6 +170,7 @@ unusedSchemaList:
   - IntentTarget
   - K8SPatchOp
   - OverlayState
+  - Patch
   - Resource
   - ResourceHistoryEntry
   - StatusDetails
